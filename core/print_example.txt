@@ -1,0 +1,18 @@
+
+ Build				()
+  ├╴UI design 			(a)
+  │  ├╴dynamic window 		(aa)
+  │  └╴different pages 		(ab)
+  ├╴Frontend Implementation	(b)
+  │  ├╴HTML			(ba)
+  │  │  └╴task ex		(baa)
+  │  ├╴CSS			(bb)
+  │  └╴JS Animations		(bc)
+  └╴Backend			(c)
+     ├╴database			(ca)
+     └╴lambdas			(cb)
+
+~~~~~~~
+> root iff nid = (), thus each subtree has it's own root
+> 2 whitespace between connectors, 2 + 3n if last root grandchildren
+~~~~~~~

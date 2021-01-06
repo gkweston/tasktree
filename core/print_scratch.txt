@@ -1,0 +1,71 @@
+
+ Build				()
+  ├╴UI design 			(a)
+  │  ├╴dynamic window 		(aa)
+  │  └╴different pages 		(ab)
+  ├╴Frontend Implementation	(b)
+  │  ├╴HTML			(ba)
+  │  │  └╴task ex		(baa)
+  │  ├╴CSS			(bb)
+  │  └╴JS Animations		(bc)
+  └╴Backend			(c)
+     ├╴database			(ca)
+     └╴lambdas			(cb)
+
+()Build                    -> (a)UI Design, (b)Frontend Implementation, (c)Backend
+(a)UI Design               -> (aa)dynamic window, (ab)different pages
+(b)Frontend Implementation -> (ba)HTML, (bb)CSS, (bc)JS Animations
+(ba) HTML                  -> (baa)task ex
+(c)Backend                 -> (ca)database, (cb)lambdas
+
+o: () (a) (aa) (ab) (b) (ba) (baa) (bb) (bc) (c) (ca) (cb)
+
+begin
+i:
+p:
+
+set itr to root, print
+i: ()
+p: ()
+
+set itr to first child, print
+i: (a)
+p: () (a)
+
+set itr to first child, print
+i: (aa)
+p: () (a) (aa)
+
+no child go up level, already printed
+i: (a)
+p: () (a) (aa)
+
+set itr to next child, print
+i: (ab)
+p: () (a) (aa) (ab)
+
+no child go up, already printed
+i: (a)
+p: () (a) (aa) (ab)
+
+last child go up
+i: ()
+p: () (a) (aa) (ab)
+
+set itr to next child, print
+i: (b)
+p: () (a) (aa) (ab) (b)
+
+set itr to next child, print
+i: (b)
+p: () (a) (aa) (ab) (b)
+
+no child go up, already printed, set itr to next child, print
+i: (ba)
+p: () (a) (aa) (ab) (b) (ba)
+
+no child go up, already printed, set itr to next child, print
+i: (bc)
+p: () (a) (aa) (ab) (b) (ba) (bc)
+
+no child go up, last child, go up, set itr to next child, print
