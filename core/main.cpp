@@ -18,19 +18,29 @@ etc
 using namespace std;
 
 int main() {
-    Tree task_tree(new Node("root_task", "", node_type::ROOT));
-    task_tree.addNode("", new Node("A_task", "a", node_type::PARENT));
-    task_tree.addNode("a", new Node("AA_task", "aa", node_type::PARENT));
-    task_tree.addNode("aa", new Node("AAA_task", "aaa", node_type::LEAF));
-    task_tree.addNode("a", new Node("AB_task", "ab", node_type::LEAF));
-    task_tree.addNode("a", new Node("AC_task", "ac", node_type::LEAF));
-    task_tree.addNode("", new Node("B_task", "b", node_type::PARENT));
-    task_tree.addNode("b", new Node("BA_task", "ba", node_type::LEAF));
-    task_tree.addNode("b", new Node("BB_task", "bb", node_type::LEAF));
-    task_tree.addNode("", new Node("C_task", "c", node_type::PARENT));
-    task_tree.addNode("c", new Node("CA_task", "ca", node_type::PARENT));
-    task_tree.addNode("ca", new Node("CAA_task", "caa", node_type::LEAF));
+    Tree task_tree(new Node("root_task", ""));
+    task_tree.addNode("", new Node("A_task", "a"));
+    task_tree.addNode("a", new Node("AA_task", "aa"));
+    task_tree.addNode("aa", new Node("AAA_task", "aaa"));
+    task_tree.addNode("a", new Node("AB_task", "ab"));
+    task_tree.addNode("a", new Node("AC_task", "ac"));
+    task_tree.addNode("", new Node("B_task", "b"));
+    task_tree.addNode("b", new Node("BA_task", "ba"));
+    task_tree.addNode("b", new Node("BB_task", "bb"));
+    task_tree.addNode("", new Node("C_task", "c"));
+    task_tree.addNode("c", new Node("CA_task", "ca"));
+    task_tree.addNode("ca", new Node("CAA_task", "caa"));
 
-    task_tree.prettyPrint("");
-    // task_tree.prettyPrintWithId(root);
+    cout << "Pretty print:\n";
+    task_tree.print("");
+
+    cout << "Remove a:\n";
+    task_tree.removeNode("a");
+    task_tree.print("");
+
+    cout << "Remove caa:\n";
+    task_tree.removeNode("caa");
+    task_tree.print("");
+    
+    
 }

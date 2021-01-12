@@ -55,34 +55,35 @@ void Tree::removeNode(std::string pid) {
 
 }
 
-void Tree::printFromNode(Node* nd) {
-    // takes a node and prints downward, as if that node were the root to its own tasktree
-    std::cout << "~Key~\nParent: P<nid>, Node: (nid: task_name), Children: Node -> { Node }\n~~~~~\n";
-    std::queue<Node*> Q;
-    Q.push(nd);
+// void Tree::printFromNode(Node* nd) {
+//     // (!) old, removing
+//     // takes a node and prints downward, as if that node were the root to its own tasktree
+//     std::cout << "~Key~\nParent: P<nid>, Node: (nid: task_name), Children: Node -> { Node }\n~~~~~\n";
+//     std::queue<Node*> Q;
+//     Q.push(nd);
 
-    while (!Q.empty()) {
-        if (Q.front()->isParent()) {
-            for (int i = 0; i < Q.front()->numChildren(); ++i)
-                Q.push(Q.front()->children[i]);
-        }
+//     while (!Q.empty()) {
+//         if (Q.front()->type == node_type::PARENT) {
+//             for (int i = 0; i < Q.front()->numChildren(); ++i)
+//                 Q.push(Q.front()->children[i]);
+//         }
 
-        Q.front()->printNodeAndChildren();
-        std::cout << std::endl;
-        Q.pop();
-    }
-}
+//         Q.front()->printNodeAndChildren();
+//         std::cout << std::endl;
+//         Q.pop();
+//     }
+// }
 
-void Tree::updateNumLevels() {
-    int max_levels = 0;
-    for (auto n : nodes)
-        if (n->node_id.size() > max_levels) 
-            max_levels = n->node_id.size();
+// void Tree::updateNumLevels() { // (!) redundant?
+//     int max_levels = 0;
+//     for (auto n : nodes)
+//         if (n->node_id.size() > max_levels) 
+//             max_levels = n->node_id.size();
 
-    num_levels = max_levels;
-}
+//     num_levels = max_levels;
+// }
 
-void Tree::prettyPrint(Node* itr, std::string indent) {
+void Tree::print(Node* itr, std::string indent) {
     std::string printstr = itr->task_name;
 
     if (itr->type == node_type::ROOT)
@@ -100,21 +101,23 @@ void Tree::prettyPrint(Node* itr, std::string indent) {
     }
 
     for (auto child: itr->children)
-        prettyPrint(child, indent);
+        print(child, indent);
 }
 
-void Tree::prettyPrint(std::string nid, std::string indent) {
+void Tree::print(std::string nid, std::string indent) {
     if (nid == "") {
-        prettyPrint(root, indent);
+        print(root, indent);
         return;
     }
     for (Node* n : nodes) {
-        if (n->node_id == nid)
-            prettyPrint(n, indent);
+        if (n->node_id == nid) {
+            print(n, indent);
+            return;
+        }
     }
 }
 
-void Tree::prettyPrintWithId(Node* itr, std::string indent) {
+void Tree::printWithId(Node* itr, std::string indent) {
     std::string printstr = itr->task_name + " <" + itr->node_id + ">";
  
     if (itr->type == node_type::ROOT)
@@ -132,26 +135,28 @@ void Tree::prettyPrintWithId(Node* itr, std::string indent) {
     }
 
     for (auto child: itr->children)
-        prettyPrintWithId(child, indent);
+        printWithId(child, indent);
 }
 
-void Tree::prettyPrintWithId(std::string nid, std::string indent) {
+void Tree::printWithId(std::string nid, std::string indent) {
     if (nid == "") {
-        prettyPrintWithId(root, indent);
+        printWithId(root, indent);
         return;
     }
     for (Node* n : nodes) {
-        if (n->node_id == nid)
-            prettyPrintWithId(n, indent);
+        if (n->node_id == nid){
+            printWithId(n, indent);
+            return;
+        }
     }
 }
 
-void Tree::testPrintNodes() {
-    std::cout << '\n';
-    for (int i = 0; i < nodes.size(); ++i)
-        std::cout << nodes[i]->node_id << " ";
-    std::cout << '\n';
-}
+// void Tree::testPrintNodes() {
+//     std::cout << '\n';
+//     for (int i = 0; i < nodes.size(); ++i)
+//         std::cout << nodes[i]->node_id << " ";
+//     std::cout << '\n';
+// }
 
 int Tree::writeToFile() {
 

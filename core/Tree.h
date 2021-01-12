@@ -40,17 +40,17 @@ public:
 	void printFromNode(Node* nd);
 	// use node_id.size() for determining max level and what level
 	void updateNumLevels();
-	// consolidate these
-	void prettyPrint(Node* itr, std::string indent="  ");
-	void prettyPrint(std::string nid, std::string indent="  ");
-	void prettyPrintWithId(Node* itr, std::string indent="  ");
-	void prettyPrintWithId(std::string nid, std::string indent="  ");
+	// (!) consolidate these?
+	void print(Node* itr, std::string indent="  ");
+	void print(std::string nid, std::string indent="  ");
+	void printWithId(Node* itr, std::string indent="  ");
+	void printWithId(std::string nid, std::string indent="  ");
 	
 
 	// to do
 	int writeToFile();
 	int readFromFile();
-	void updateNodeTypes(); // make sure parents are parents and leaves are leaves
+	void updateNodeTypes(); // necessary? if a node is a parent and becomes a leaf, it should be popped...
 	void makeTree();
 	void changeTaskName();
 	// this is in case AAA, AAB, AAC where AAB is removed and AAC -> AAB, may be handled as we go

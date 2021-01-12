@@ -17,13 +17,12 @@ struct Node {
 	std::vector<Node*> children;
 	Node* parent;
 
-	// node types should be handled in tree processes
-	Node(std::string _name, std::string _id, node_type _type);
+	// all nodes start as leaves except root - addChild changes to parent, parents who become leaves are popped (completed)
+	Node(std::string _name, std::string _id);
 	
 	bool hasSiblings();
 	int numSiblings();
 	std::string genNodeId();
-	bool isParent();
 	int numChildren();
 	// add/remove children from parent to ensure consistancy in std::vector<Node*> children
 	void addChild(Node* chld);

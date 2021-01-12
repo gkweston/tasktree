@@ -1,9 +1,12 @@
 #include "Node.h"
 
-// this is the root's constructor
-Node::Node(std::string _name, std::string _id, node_type _type) : task_name(_name), node_id(_id), type(_type), parent(NULL) { }
-
-
+// all nodes start as leaves except root - addChild changes to parent, parents who become leaves are popped (completed)
+Node::Node(std::string _name, std::string _id) : task_name(_name), node_id(_id), parent(NULL) {
+    if (_id == "")
+        type = node_type::ROOT;
+    else
+        type = node_type::LEAF;
+}
 
 bool Node::hasSiblings() {
     if (type == node_type::ROOT) {
@@ -45,17 +48,14 @@ std::string Node::genNodeId() {
     std::cout << "Error generating node id\n";
 }
 
-bool Node::isParent() {
-    if (children.size() == 0)
-        return false;
-    return true;
-}
-
 int Node::numChildren() { return children.size(); }
 
 void Node::addChild(Node* chld) {
     children.push_back(chld);
     chld->parent = this;
+    
+    if (type == node_type::LEAF)
+        type = node_type::PARENT;
 }
 
 int Node::removeChild(Node* chld) {
