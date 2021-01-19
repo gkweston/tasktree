@@ -8,17 +8,20 @@ Add add task time accumulation which establishes parent node time as the sum of 
 
 #include <iostream>
 #include <string>
+#include <sstream>
 #include <vector>
 #include <queue>
+#include <fstream>
 #include "Node.h"
 
 #pragma once
 
 class Tree {
-	Node* root;
-	std::vector<Node*> nodes;
+	Node* root;  // the label here should be the title of the todo list, when reading take filename
+	std::vector<Node*> nodes;  // root is never inside this vector, it can be considered a ghost
 	int num_levels;
 public:
+	Tree();
 	Tree(Node* rt);
 	~Tree();
 	
@@ -40,22 +43,20 @@ public:
 	void printFromNode(Node* nd);
 	// use node_id.size() for determining max level and what level
 	void updateNumLevels();
-	// (!) consolidate these?
-	void print(Node* itr, std::string indent="  ");
-	void print(std::string nid, std::string indent="  ");
-	void printWithId(Node* itr, std::string indent="  ");
-	void printWithId(std::string nid, std::string indent="  ");
 	
+	// default parameters are never specified for print methods, instead they hide the indent paremeter used in recursion
+	void print(Node* itr, std::string indent="  ");
+	void print(std::string nid="", std::string indent="  ");
+	void printWithId(Node* itr, std::string indent="  ");
+	void printWithId(std::string nid="", std::string indent="  ");
+	
+	int writeToFile(std::string filename="tasktree.tf");
+	int readFromFile(std::string filename="tasktree.tf");
 
 	// to do
-	int writeToFile();
-	int readFromFile();
-	void updateNodeTypes(); // necessary? if a node is a parent and becomes a leaf, it should be popped...
+	
 	void makeTree();
 	void changeTaskName();
 	// this is in case AAA, AAB, AAC where AAB is removed and AAC -> AAB, may be handled as we go
 	void consolidateNodeId();
-
-	// test
-	void testPrintNodes();
 };

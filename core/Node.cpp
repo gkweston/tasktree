@@ -18,34 +18,37 @@ bool Node::hasSiblings() {
 int Node::numSiblings() { return this->parent->children.size(); }
 
 std::string Node::genNodeId() {
-    // (!) this should be done by tree so it can be passed into constructor
-    // is root explicitely assigned a node or assigned here
-    // last_sid is node's last sibling's nid
-    if (type == node_type::ROOT)
-        // id = "" iff root
-        return "";
-    else if (parent->type == node_type::ROOT) {
-        // base case for node_ids
-        if (hasSiblings()) {
-            // take last node on this level and make nid the next letter by ASCII
-            std::string last_sid = parent->children[numSiblings() - 1]->node_id;
-            return "" + (char)last_sid[0]++;
-        } else {
-            // first node added, start at A - gives node_id numbers a larger base than "a"
-            return "A";
-        }
-    } else {
-        if (hasSiblings()) {
-            // increment the last sibling's node_id
-            std::string last_sid = parent->children[numSiblings() - 1]->node_id;
-            return parent->node_id + (char)last_sid[last_sid.size() - 1]++;
-        } else {
-            // first node on this level, start at "A"
-            return parent->node_id + "A";
-        }
-    }
-    // all should be accounted for - all member data should be established before calling genNodeId()
-    std::cout << "Error generating node id\n";
+    //
+    //(!) this should be done by tree so it can be passed into constructor (!)
+    //
+
+    // // is root explicitely assigned a node or assigned here
+    // // last_sid is node's last sibling's nid
+    // if (type == node_type::ROOT)
+    //     // id = "" iff root
+    //     return "";
+    // else if (parent->type == node_type::ROOT) {
+    //     // base case for node_ids
+    //     if (hasSiblings()) {
+    //         // take last node on this level and make nid the next letter by ASCII
+    //         std::string last_sid = parent->children[numSiblings() - 1]->node_id;
+    //         return "" + (char)last_sid[0]++;
+    //     } else {
+    //         // first node added, start at A - gives node_id numbers a larger base than "a"
+    //         return "A";
+    //     }
+    // } else {
+    //     if (hasSiblings()) {
+    //         // increment the last sibling's node_id
+    //         std::string last_sid = parent->children[numSiblings() - 1]->node_id;
+    //         return parent->node_id + (char)last_sid[last_sid.size() - 1]++;
+    //     } else {
+    //         // first node on this level, start at "A"
+    //         return parent->node_id + "A";
+    //     }
+    // }
+    // // all should be accounted for - all member data should be established before calling genNodeId()
+    // std::cout << "Error generating node id\n";
 }
 
 int Node::numChildren() { return children.size(); }

@@ -31,16 +31,17 @@ int main() {
     task_tree.addNode("c", new Node("CA_task", "ca"));
     task_tree.addNode("ca", new Node("CAA_task", "caa"));
 
-    cout << "Pretty print:\n";
-    task_tree.print("");
+    cout << "Pretty print indent=default:\n";
+    task_tree.print();
 
-    cout << "Remove a:\n";
-    task_tree.removeNode("a");
-    task_tree.print("");
+    cout << "Test file output to \"tasktree.tf\"\n";
+    task_tree.writeToFile();
 
-    cout << "Remove caa:\n";
-    task_tree.removeNode("caa");
-    task_tree.print("");
+    // cout << "Make empty tt and read file, then print\n";
+    cout << "\n\ndebugging\n\n";
+    Tree task_tree_r;
+    task_tree_r.readFromFile();
+    // task_tree_r.print();
     
     
 }

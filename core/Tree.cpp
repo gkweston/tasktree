@@ -4,11 +4,14 @@ Add a log which keeps track of each iteration of the task tree as you complete i
 
 #include "Tree.h"
 
+Tree::Tree() : root(NULL) { }
+
 Tree::Tree(Node* _rt) : root(_rt) { }
 
 Tree::~Tree() {
     for (int i = 0; i < nodes.size(); ++i)
         delete nodes[i];
+    delete root;
 }
 
 void Tree::addNode(Node* parent, Node* chld) {
@@ -104,7 +107,7 @@ void Tree::print(Node* itr, std::string indent) {
         print(child, indent);
 }
 
-void Tree::print(std::string nid, std::string indent) {
+void Tree::print(std::string nid,std::string indent) {
     if (nid == "") {
         print(root, indent);
         return;
@@ -151,17 +154,78 @@ void Tree::printWithId(std::string nid, std::string indent) {
     }
 }
 
-// void Tree::testPrintNodes() {
-//     std::cout << '\n';
-//     for (int i = 0; i < nodes.size(); ++i)
-//         std::cout << nodes[i]->node_id << " ";
-//     std::cout << '\n';
-// }
+int Tree::writeToFile(std::string filename) {
+    // clear given file
+    std::ofstream outfile(filename, std::ofstream::out | std::ofstream::trunc);
+    outfile.close();
 
-int Tree::writeToFile() {
-
+    // write all relevant node attributes to file, node levels are encrypted by node_id format
+    // this is then used in readFromFile() to reconstruct tree, simplifying this process
+    outfile.open(filename);
+    for (Node* n : nodes) {
+        // outfile << n->node_id << "," << n->task_name << " ";
+        outfile << n->node_id << ' ' << n->task_name << '\n';
+    }
+        
 }
 
-int Tree::readFromFile() {
+int Tree::readFromFile(std::string filename) {
+    // read from file, using task_id to reconstruct tree
 
+    // create root_node, set this->root = &root_node
+    root = new Node(filename, "");
+    
+    // make vector of all node_id, task_name, find max(nid.size) for loop below
+    std::ifstream inputfile(filename);
+    std::string line, nid, tname;
+    int max_nid_size = 0;
+    while (std::getline(inputfile, line)) {
+        std::stringstream ss(line);
+        ss >> nid >> tname;
+        nodes.push_back(new Node(nid, tname));
+
+        if (max_nid_size < nid.size())
+            max_nid_size = nid.size();
+    }
+
+    // for (Node* n : nodes) std::cout << n->task_name << std::endl;
+    
+    // iterate through nodes, if nid.size == 1 add as child of root
+    int curr_nid_size = 1;
+    for (Node* n : nodes) {
+        if (n->node_id.size() == curr_nid_size)
+            root.addChild(n);
+    }
+
+    // while i <= max_nid_size
+    //     iterate through nodes, if nid.size == i++ add as child of nid[i-2]
+
+    // while (curr_nid_size <= max_nid_size) {
+
+    // }
+    for (Node* n : nodes) {
+        if (n->node_id.size() == ++curr_nid_size) {
+            this->addNode(n->node_id[curr_nid_size-2], n);
+        }
+
+    }
+    
+    
+    
+
+    /*
+    std::vector<std::pair<std::string, std::string>>> name_id_vec;
+    while (getline(line, " "))
+        while (getline(line_, ","))
+            
+    */
+
+    // i = 1
+    // make vector of all node_id.size=i
+    // for each add child to root remove from vector of all nodes
+
+    // make vector of all node_id.size=i++
+    // for each add child to node_id[i - 1] remove from vector of all nodes
+
+    // continue while vector of all nodes.size > 0
 }

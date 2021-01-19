@@ -11,11 +11,12 @@
 enum node_type {ROOT, PARENT, LEAF};
 
 struct Node {
-	std::string task_name; // taskname
-	std::string node_id;
 	node_type type;
-	std::vector<Node*> children;
+	std::string node_id;
+	std::string task_name; // taskname
 	Node* parent;
+	std::vector<Node*> children;
+
 
 	// all nodes start as leaves except root - addChild changes to parent, parents who become leaves are popped (completed)
 	Node(std::string _name, std::string _id);
@@ -27,8 +28,8 @@ struct Node {
 	// add/remove children from parent to ensure consistancy in std::vector<Node*> children
 	void addChild(Node* chld);
 	int removeChild(Node* chld);
-	void printNode();
-	void printNodeAndChildren();
+	void printNode(); //(!) remove
+	void printNodeAndChildren(); // (!) remove
 };
 
 bool operator==(const Node& n1, const Node& n2);
