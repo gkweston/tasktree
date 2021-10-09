@@ -12,16 +12,16 @@ However flawed this implementation is, I still really like this idea for some re
 
 ### current output example
 ```
- Build				        ()
-  ├╴UI design 			    (a)
+ Build				()
+  ├╴UI design 			(a)
   │  ├╴dynamic window 		(aa)
   │  └╴different pages 		(ab)
   ├╴Frontend Implementation	(b)
-  │  ├╴HTML			        (ba)
-  │  │  └╴task ex		    (baa)
-  │  ├╴CSS			        (bb)
+  │  ├╴HTML			(ba)
+  │  │  └╴task ex		(baa)
+  │  ├╴CSS			(bb)
   │  └╴JS Animations		(bc)
-  └╴Backend			        (c)
-     ├╴database			    (ca)
-     └╴lambdas			    (cb)
+  └╴Backend			(c)
+     ├╴database			(ca)
+     └╴lambdas			(cb)
 ```
