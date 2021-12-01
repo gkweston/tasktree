@@ -1,16 +1,24 @@
-### tasktree CLI tool
+### So you want a cool todo list?
 
 Make a todo list where each element is a child of something. When all children for a given node are marked as completed, that node gets popped! Simple as that.
 
-This is the original C++ version, where it more-or-less served as a coding exercise.I have *designs* for a newer vesion with a better encoding scheme (and a whole host of other features). The plan is to make a simple frontend so users can run this in a browser and use it as a todo list. Then put it up on my [website](bokehbox.us).
+This contains the original C++ version, where it more-or-less served as a coding exercise. I've also added the react version which served as an inclass project for a UI/UX class which was quite *quickly* hacked together to meet an in-class demo deadline.
 
-Watch out for incremental progress, but be warned, my personal projects generally have to take a backseat...
+The React version began as implementing a frontend for my tasktree idea, but ended up serving to explore if users respond better to a *gamification* approach to completing everyday tasks (*i.e.*, are animations/score systetms fun or simply distracting).
 
-### misc
+We may still add support for some features, but these are the two working versions as they stand today.
 
-However flawed this implementation is, I still really like this idea for some reason... if you want to collaborate please [let me know!](mailto:gkweston@tamu.edu)
+### react build/run commands
+```
+git clone <this_repo>
+cd tasktree/react_version
+yarns
+yarn start
+```
 
-### current output example
+See `/react_version/README.md` for more.
+
+### cpp output example
 ```
  Build				()
   ├╴UI design 			(a)
@@ -25,3 +33,6 @@ However flawed this implementation is, I still really like this idea for some re
      ├╴database			(ca)
      └╴lambdas			(cb)
 ```
+
+See `/cpp_version/README.md` for more on the original version.
+

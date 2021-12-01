@@ -1,0 +1,13 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.Header {
+  flex: 0 0 auto;
+}
+
+.Footer {
+  color:#c61aff
+}
