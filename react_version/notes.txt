@@ -1,0 +1,10 @@
+Future additions
+	Look at rounding the cornes of nodes and cleaning up design
+	Add a simple animation when nodes are completed
+
+Current bugs:
+	If a node has children and you complete it, score only updates for one
+	Drag n drop doesn't work properly
+	Part of the first task is occluded by the animation box on the score counter
+	
+
