@@ -29,4 +29,7 @@ cpp_version/core/*.o
 cpp_version/core/a.out
 .DS_Store
 .vs_code
+*/.DS_Store
+*/.vs_code
+
 
